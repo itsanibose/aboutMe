@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Anindya Bose — Data Engineering & AI Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    color-scheme: light;
+    --paper:      #E4E5E2;
+    --paper-deep: #DBDCD8;
+    --ink:        #212630;
+    --ink-soft:   #5A616B;
+    --claret:     #6F2C3A;
+    --claret-dim: rgba(111, 44, 58, 0.22);
+    --rule:       rgba(33, 38, 48, 0.16);
+
+    --rail:       190px;
+    --measure:    66ch;
+    --gap:        clamp(1.5rem, 4vw, 3rem);
+    --pad:        clamp(1.5rem, 6vw, 4.5rem);
+
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans:  "IBM Plex Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 1.02rem;
+    line-height: 1.62;
+    padding:
+      env(safe-area-inset-top, 0px)
+      env(safe-area-inset-right, 0px)
+      env(safe-area-inset-bottom, 0px)
+      env(safe-area-inset-left, 0px);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .doc {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: clamp(3rem, 8vw, 6rem) var(--pad) 4rem;
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead { margin-bottom: clamp(3rem, 7vw, 5rem); }
+
+  .name {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(3rem, 9vw, 5.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  .lede-line {
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    font-weight: 500;
+    color: var(--ink);
+    max-width: 30ch;
+    margin-top: 1.5rem;
+    line-height: 1.35;
+  }
+
+  .contact {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.25rem;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .contact a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--claret-dim);
+    padding-bottom: 1px;
+    transition: color 0.18s, border-color 0.18s;
+  }
+  .contact a:hover { color: var(--claret); border-color: var(--claret); }
+
+  .masthead-rule {
+    height: 2px;
+    background: var(--claret);
+    width: 100%;
+    margin-top: clamp(2rem, 5vw, 3rem);
+  }
+
+  /* ─── SECTION / RAIL GRID ─── */
+  .section {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: var(--gap);
+    padding: clamp(2.5rem, 5vw, 3.75rem) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section:last-of-type { border-bottom: none; }
+
+  .rail {
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    padding-top: 0.5rem;
+  }
+  .rail .rail-note {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 0.35rem;
+    opacity: 0.8;
+  }
+
+  .col { min-width: 0; }
+
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose { max-width: var(--measure); }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 600; color: var(--ink); }
+
+  /* ─── EXPERIENCE ENTRIES ─── */
+  .entry {
+    border-left: 2px solid var(--claret);
+    padding-left: 1.5rem;
+    margin-bottom: 2.5rem;
+    max-width: var(--measure);
+  }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-meta {
+    font-size: 0.86rem;
+    color: var(--claret);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .entry-role {
+    font-size: 1.12rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 0.3rem;
+    line-height: 1.3;
+  }
+  .entry-org {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    margin-top: 0.1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .entry ul { list-style: none; }
+  .entry li {
+    position: relative;
+    padding-left: 1.1rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.97rem;
+    line-height: 1.55;
+  }
+  .entry li:last-child { margin-bottom: 0; }
+  .entry li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    background: var(--claret);
+    transform: rotate(45deg);
+  }
+
+  /* ─── DEFINITION LIST ─── */
+  .deflist { max-width: var(--measure); display: grid; gap: 1.25rem; }
+  .deflist div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
+  .deflist dt { font-weight: 600; color: var(--ink); font-size: 0.98rem; }
+  .deflist dd { color: var(--ink-soft); font-size: 0.94rem; line-height: 1.5; }
+
+  /* ─── SIMPLE LISTS ─── */
+  .stack { max-width: var(--measure); display: grid; gap: 1.4rem; }
+  .block-head { font-weight: 600; font-size: 0.98rem; color: var(--ink); margin-bottom: 0.5rem; }
+  .plain { list-style: none; }
+  .plain li { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.5; margin-bottom: 0.3rem; }
+  .plain li:last-child { margin-bottom: 0; }
+  .plain .year { color: var(--claret); font-weight: 500; }
+
+  .writing { list-style: none; max-width: var(--measure); display: grid; gap: 1.35rem; }
+  .writing li { line-height: 1.5; }
+  .writing .w-title { font-weight: 600; color: var(--ink); font-size: 0.99rem; }
+  .writing .w-desc { color: var(--ink-soft); font-size: 0.93rem; margin-top: 0.15rem; }
+  .writing .w-tag { color: var(--claret); font-size: 0.82rem; font-weight: 600; margin-bottom: 0.1rem; }
+
+  /* ─── FOOTER ─── */
+  .foot {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: var(--gap);
+    padding-top: 2.5rem;
+    border-top: 2px solid var(--claret);
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+  }
+  .foot a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--claret-dim); }
+  .foot a:hover { color: var(--claret); border-color: var(--claret); }
+
+  a:focus-visible { outline: 2px solid var(--claret); outline-offset: 3px; border-radius: 1px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 720px) {
+    .section, .foot { grid-template-columns: 1fr; gap: 0.75rem; }
+    .rail { padding-top: 0; }
+    .section-title { margin-top: 0.25rem; }
+  }
+
+  /* ─── MOTION ─── */
+  @media (prefers-reduced-motion: no-preference) {
+    .masthead > * {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    }
+    .masthead .lede-line     { animation-delay: 0.08s; }
+    .masthead .contact       { animation-delay: 0.16s; }
+    .masthead .masthead-rule { animation-delay: 0.24s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+<main class="doc">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <h1 class="name">Anindya&nbsp;Bose</h1>
+    <p class="lede-line">Principal architect for the data and AI platforms that large enterprises run on.</p>
+    <div class="contact">
+      <span>Greater Philadelphia</span>
+      <a href="https://www.linkedin.com/in/bose-anindya" target="_blank" rel="noopener">linkedin.com/in/bose-anindya</a>
+      <a href="mailto:sap.anindya@gmail.com">sap.anindya@gmail.com</a>
+    </div>
+    <div class="masthead-rule"></div>
+  </header>
+
+  <!-- PROFILE -->
+  <section class="section">
+    <div class="rail">Profile</div>
+    <div class="col">
+      <div class="prose">
+        <p>For eighteen years I have worked at the seam between enterprise systems of record and modern cloud data platforms &mdash; the place where SAP business processes meet Databricks, and where raw operational data becomes something leaders can actually decide on.</p>
+        <p>I design the architecture, lead the teams that build it, and stay close enough to the engineering to know whether what we drew on the whiteboard will survive contact with production. Senior leaders at IBM, British Petroleum, Lexmark, Medtronic, Cencora, and Becton Dickinson have trusted me to set data strategy and carry high-stakes initiatives from first sketch to sustained adoption.</p>
+        <p>The through-line across all of it: rare depth in <strong>both</strong> the data architecture and the underlying ERP business processes &mdash; SD, MM, FI, GL &mdash; so the platform reflects not just clean data, but the business logic that makes the data mean something.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="rail">Experience<span class="rail-note">18+ years</span></div>
+    <div class="col">
+      <h2 class="section-title">Where I've built</h2>
+
+      <div class="entry">
+        <div class="entry-meta">2022 &ndash; Present</div>
+        <div class="entry-role">Principal Architect, Data Engineering &amp; AI</div>
+        <div class="entry-org">Becton Dickinson &mdash; Franklin Lakes, NJ</div>
+        <ul>
+          <li>Architected a data mesh on Azure Databricks and BW/4HANA with 100+ data professionals across four regions, cutting time-to-insight by 60% and opening self-service analytics to 10+ business domains.</li>
+          <li>Built an &ldquo;ingest once, use many&rdquo; backbone on Unity Catalog and Delta Sharing across 30+ source systems &mdash; SAP, JDE, SQL Server, Salesforce, Reltio &mdash; lowering ingestion cost 40% and shrinking consumer onboarding from weeks to days.</li>
+          <li>Hardened the platform with reusable pipelines, cluster policies, and Databricks Asset Bundles: 35% lower infrastructure cost, 80% fewer pipeline failures, and 99.9% SLA adherence through real-time observability.</li>
+          <li>Shipped a RAG contract-intelligence platform on Azure OpenAI and Document Intelligence that surfaced 30% more at-risk contracts and cut legal review cycles by three weeks.</li>
+          <li>Embedded PII protection and governance for a 100% SOX audit pass rate; stewarded a $5M capital portfolio and a $1M factory model; grew three engineers into expanded leadership and technical roles.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-meta">2015 &ndash; 2022</div>
+        <div class="entry-role">Manager, Apps Development &mdash; Data &amp; Analytics</div>
+        <div class="entry-org">Cencora, formerly AmerisourceBergen &mdash; Conshohocken, PA</div>
+        <ul>
+          <li>Built and led a 20+ person SAP BW/HANA team running a high-scale enterprise analytics ecosystem.</li>
+          <li>Architected a 30 TB enterprise warehouse on SAP BW for HANA using CDS Views, AMDP, and Calculation Views &mdash; cutting hardware cost by $350K a year with measurable query-performance gains.</li>
+          <li>Delivered pricing and order-fulfilment analytics across SAP SD and MM, enabling real-time backorder classification and accurate shipping prediction.</li>
+          <li>Built an RFP engine that cut response time from three days to thirty seconds, and a cost-optimization engine that surfaced up to $25M/month in savings through generic-alternative sourcing.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-meta">2012 &ndash; 2015</div>
+        <div class="entry-role">Architecture &amp; Strategy</div>
+        <div class="entry-org">Lexmark International, a Xerox company &mdash; Lexington, KY</div>
+        <ul>
+          <li>Designed a global Annuities Management Program across Teradata, SAP BW/HANA, and Salesforce, with a Gamma-distribution install-base forecast implemented in SAP ABAP.</li>
+          <li>Led the SAP BW to BW-on-HANA migration, redesigning the architecture from LSA to LSA++ with real-time SLT replication and materially lower HANA memory cost.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-meta">2007 &ndash; 2012</div>
+        <div class="entry-role">Senior Systems Engineer, SAP BW</div>
+        <div class="entry-org">IBM &mdash; Kolkata, India</div>
+        <ul>
+          <li>Led end-to-end SAP BW delivery as project lead and offshore coordinator; built a distributed delivery unit from scratch and mentored new hires.</li>
+          <li>Implemented SOX controls at application and database level and integrated SAP BW with ECC finance (GL, AR, AP) for consolidated, compliant financial analytics.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section">
+    <div class="rail">Capabilities</div>
+    <div class="col">
+      <h2 class="section-title">Depth across the stack &mdash; and the business beneath it</h2>
+      <dl class="deflist">
+        <div><dt>SAP Sales &amp; Distribution</dt><dd>Order-to-cash, pricing and condition management, backorder classification, SD/MM integration, delivery and shipping workflows.</dd></div>
+        <div><dt>SAP Materials Management</dt><dd>Procurement, inventory and goods movement, vendor and purchase-order analytics, distribution-center matching, sourcing optimization.</dd></div>
+        <div><dt>SAP Finance</dt><dd>General Ledger, Accounts Receivable and Payable, consolidated financial analytics, SOX controls, period-end close reporting.</dd></div>
+        <div><dt>BW/4HANA &amp; BW on HANA</dt><dd>LSA++ architecture, advanced DSOs, SPOs, CDS-View extraction, AMDP, Calculation and Analytic Views, SLT replication, Integrated Planning.</dd></div>
+        <div><dt>S/4HANA &amp; ECC</dt><dd>Embedded analytics, virtual data models, CDS Views, OData and SAP Gateway services, ECC-to-S/4HANA migration analytics.</dd></div>
+        <div><dt>Cloud &amp; platform</dt><dd>Databricks, Delta Lake, Unity Catalog, Delta Sharing, Teradata, Power BI, SQL Server.</dd></div>
+        <div><dt>Languages</dt><dd>Python, PySpark, SQL and T-SQL, SAP ABAP, JavaScript, FastAPI, LangChain.</dd></div>
+        <div><dt>Applied AI</dt><dd>Azure OpenAI and retrieval-augmented generation, Microsoft Document Intelligence, predictive forecasting.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <section class="section">
+    <div class="rail">Education &amp; credentials</div>
+    <div class="col">
+      <h2 class="section-title">Education &amp; certifications</h2>
+      <div class="stack">
+        <div>
+          <div class="block-head">Education</div>
+          <ul class="plain">
+            <li><span class="year">2007</span> &nbsp;&middot;&nbsp; Master of Technology &mdash; Indian Institute of Technology, Kharagpur</li>
+            <li><span class="year">2005</span> &nbsp;&middot;&nbsp; Bachelor of Engineering &mdash; Bengal Engineering &amp; Science University, Shibpur</li>
+            <li><span class="year">In progress</span> &nbsp;&middot;&nbsp; MS, Data Analytics &mdash; Truman State University</li>
+          </ul>
+        </div>
+        <div>
+          <div class="block-head">Databricks</div>
+          <ul class="plain">
+            <li>Context Engineering Associate <span class="year">2026</span>, Generative AI Associate <span class="year">2026</span>, Data Engineer Professional <span class="year">2024</span>, Generative AI Fundamentals <span class="year">2023</span>, Apache Spark 3.0 Associate Developer <span class="year">2023</span>, Data Engineer Associate <span class="year">2022</span>.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="block-head">SAP</div>
+          <ul class="plain">
+            <li>BW/4HANA 2.0 Application Specialist <span class="year">2021</span>, HANA 2.0 SPS5 Development Associate <span class="year">2021</span>, Analytics Cloud Application Associate <span class="year">2021</span>, HANA 2.0 Application Associate <span class="year">2020</span>, ABAP for SAP HANA 2.0 Development Specialist <span class="year">2020</span>.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="block-head">Alteryx</div>
+          <ul class="plain">
+            <li>Designer Advanced <span class="year">2021</span>, Designer Core <span class="year">2020</span>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section class="section">
+    <div class="rail">Writing</div>
+    <div class="col">
+      <h2 class="section-title">Thought leadership &amp; research</h2>
+      <ul class="writing">
+        <li>
+          <div class="w-title">Embracing the shift: SAP BW/4HANA to Databricks</div>
+          <div class="w-desc">A practitioner's guide to migrating enterprise analytics &mdash; architecture trade-offs, data-model translation patterns, and keeping governance continuous at scale.</div>
+        </li>
+        <li>
+          <div class="w-title">Tracking manual changes with SAP BW Integrated Planning</div>
+          <div class="w-desc">Capturing, auditing, and reporting manual adjustments so planning satisfies finance stakeholders and internal controls.</div>
+        </li>
+        <li>
+          <div class="w-title">BW extractors sourced from HANA models</div>
+          <div class="w-desc">Building custom SAP BW extractors that read directly from HANA Calculation and Analytic Views for flexible, performant extraction.</div>
+        </li>
+        <li>
+          <div class="w-title">Running totals in HANA Calculation Views</div>
+          <div class="w-desc">Window functions and running totals via graphical techniques and SQL Script for real-time analytical aggregation.</div>
+        </li>
+        <li>
+          <div class="w-title">Dynamic, input-driven filtering of HANA views</div>
+          <div class="w-desc">Runtime input parameters that let users slice data with better performance and relevance across reporting tools.</div>
+        </li>
+        <li>
+          <div class="w-tag">Peer-reviewed</div>
+          <div class="w-title">Modeling recrystallization in cold-rolled copper using inverse cellular automata and genetic algorithms</div>
+          <div class="w-desc">Static recrystallization in annealed, cold-rolled copper simulated with a cellular-automata model whose parameters were genetically evolved, with the initial microstructure generated by an inverse CA coupled to differential evolution.</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div>Anindya Bose</div>
+    <div>Data engineering &amp; AI architecture &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/bose-anindya" target="_blank" rel="noopener">LinkedIn</a></div>
+  </footer>
+
+</main>
+</body>
+</html>
